@@ -6,18 +6,24 @@ html body #web_bg {
     background-position: center !important;
 }
 
-/* ========== 顶部导航栏：完全透明 ========== */
+/* ========== 顶部导航栏：所有状态全透明 ========== */
 html body #page-header,
 html body #page-header #nav,
-html body #page-header.nav-fixed #nav {
+html body #page-header.nav-fixed #nav,
+html body #page-header.nav-fixed,
+html body #nav {
     background: transparent !important;
+    background-color: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     box-shadow: none !important;
     border: none !important;
 }
-
-/* 导航栏文字加阴影，透明背景下也能看清 */
+html body #nav .nav-inner,
+html body #nav .nav-left,
+html body #nav .nav-right {
+    background: transparent !important;
+}
 html body #nav .site-name,
 html body #nav #menus a,
 html body #nav .nav-icon i,
@@ -26,23 +32,19 @@ html body #nav button i {
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.9) !important;
 }
 
-/* ========== 底部蓝色大底座：透明 ========== */
-html body #footer {
+/* ========== 底部全透明 ========== */
+html body #footer,
+html body #footer::before,
+html body #footer::after {
     background: transparent !important;
     background-image: none !important;
 }
-
-html body #footer::before {
-    display: none !important;
-}
-
 html body #footer .footer-other,
 html body #footer .footer-copyright {
     background: transparent !important;
     color: #ffffff !important;
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.8) !important;
 }
-
 html body #footer .footer-copyright a {
     color: #ffffff !important;
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.8) !important;
@@ -55,15 +57,60 @@ html body #site-info #site-title {
     letter-spacing: 2px !important;
 }
 
-/* ========== 卡片毛玻璃 ========== */
-html body #aside-content .card-widget, 
-html body .recent-post-item {
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+/* ================================================= */
+/* ========== 卡片：高透明度，透出背后的火箭 ========== */
+/* ================================================= */
+
+/* 首页文章卡片 + 侧边栏卡片：透明度拉到 0.28 */
+html body .recent-post-item,
+html body #recent-posts .recent-post-item,
+html body .recent-post-items .recent-post-item,
+html body #aside-content .card-widget,
+html body #aside-content .sticky_layout .card-widget,
+html body .aside-content .card-widget,
+html body .card-widget,
+html body .card-info,
+html body .card-announcement,
+html body .card-recent-post,
+html body .card-archives,
+html body .card-webinfo,
+html body .card-categories,
+html body .card-tags,
+html body .card-post-series,
+html body #post,
+html body #page,
+html body #archive,
+html body #tag,
+html body #category,
+html body #pagination,
+html body #post-comment,
+html body .post-meta-wrap,
+html body .article-meta-wrap {
+    background: rgba(255, 255, 255, 0.28) !important;
+    background-color: rgba(255, 255, 255, 0.28) !important;
+    backdrop-filter: blur(12px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(160%) !important;
     border-radius: 12px !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+}
+
+/* 干掉可能残留的白色伪元素层 */
+html body .recent-post-item::before,
+html body .recent-post-item::after,
+html body #aside-content .card-widget::before,
+html body #aside-content .card-widget::after {
+    display: none !important;
+}
+
+/* 深色模式下卡片适配 */
+[data-theme="dark"] html body .recent-post-item,
+[data-theme="dark"] html body #aside-content .card-widget,
+[data-theme="dark"] html body .card-widget,
+[data-theme="dark"] html body #post,
+[data-theme="dark"] html body #page {
+    background: rgba(15, 15, 15, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 
 /* ========== 链接橙色悬浮 ========== */
@@ -71,4 +118,12 @@ html body a:hover,
 html body #pagination .page-number.current {
     color: #FF8C00 !important;
     border-color: #FF8C00 !important;
+}
+
+/* ========== 滚动条美化 ========== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #4A90E2, #FF8C00);
+    border-radius: 4px;
 }
