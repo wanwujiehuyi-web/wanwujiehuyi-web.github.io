@@ -1,75 +1,74 @@
-/* 给背景加一层赛博朋克渐变遮罩，让背景图更立体 */
-html body #web_bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(74, 144, 226, 0.4), rgba(255, 140, 0, 0.2)) !important;
-    z-index: -1;
+/* ========== 背景图固定 ========== */
+html body #web_bg {
+    background-image: url('/img/blog-bg.jpg') !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
 }
 
-/* 强制标题发光+渐变字 */
+/* ========== 顶部导航栏：完全透明 ========== */
+html body #page-header,
+html body #page-header #nav,
+html body #page-header.nav-fixed #nav {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* 导航栏文字加阴影，透明背景下也能看清 */
+html body #nav .site-name,
+html body #nav #menus a,
+html body #nav .nav-icon i,
+html body #nav button i {
+    color: #ffffff !important;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* ========== 底部蓝色大底座：透明 ========== */
+html body #footer {
+    background: transparent !important;
+    background-image: none !important;
+}
+
+html body #footer::before {
+    display: none !important;
+}
+
+html body #footer .footer-other,
+html body #footer .footer-copyright {
+    background: transparent !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8) !important;
+}
+
+html body #footer .footer-copyright a {
+    color: #ffffff !important;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* ========== 首页大标题发光 ========== */
 html body #site-info #site-title {
-    background: linear-gradient(90deg, #4A90E2, #FF8C00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px rgba(74, 144, 226, 0.6), 0 0 30px rgba(255, 140, 0, 0.4) !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(74, 144, 226, 0.8) !important;
     font-weight: bold !important;
     letter-spacing: 2px !important;
-    animation: neonGlow 2s ease-in-out infinite alternate;
 }
 
-@keyframes neonGlow {
-    from { filter: brightness(1); }
-    to { filter: brightness(1.4); }
-}
-
-/* 导航栏：毛玻璃+底部发光 */
-html body #page-header #nav {
-    background: rgba(0, 0, 0, 0.5) !important;
-    backdrop-filter: blur(15px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(15px) saturate(180%) !important;
-    border-bottom: 1px solid rgba(74, 144, 226, 0.5) !important;
-    box-shadow: 0 4px 20px rgba(74, 144, 226, 0.3) !important;
-}
-
-/* 卡片：超级毛玻璃 + 悬浮上浮动画 */
+/* ========== 卡片毛玻璃 ========== */
 html body #aside-content .card-widget, 
 html body .recent-post-item {
-    background: rgba(255, 255, 255, 0.15) !important;
-    backdrop-filter: blur(20px) saturate(200%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
-    border-radius: 16px !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255,255,255,0.1) !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
-html body #aside-content .card-widget:hover, 
-html body .recent-post-item:hover {
-    transform: translateY(-8px) scale(1.02) !important;
-    box-shadow: 0 15px 50px rgba(74, 144, 226, 0.4) !important;
-    border-color: #FF8C00 !important;
-}
-
-/* 自定义霓虹滚动条 */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
-}
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #4A90E2, #FF8C00);
-    border-radius: 4px;
-}
-
-/* 链接悬浮橙色 */
+/* ========== 链接橙色悬浮 ========== */
 html body a:hover, 
 html body #pagination .page-number.current {
     color: #FF8C00 !important;
     border-color: #FF8C00 !important;
-    text-shadow: 0 0 8px rgba(255, 140, 0, 0.6) !important;
 }
