@@ -1,129 +1,220 @@
-/* ========== 背景图固定 ========== */
-html body #web_bg {
-    background-image: url('/img/blog-bg.jpg') !important;
+/* ========== 首页窗帘（大图）与标题定位 ========== */
+html body #page-header {
+    position: relative !important;
+    height: 100vh !important;
+    background-image: url('/img/starship-bg.jpg') !important;
     background-size: cover !important;
-    background-attachment: fixed !important;
     background-position: center !important;
+    
+    /* ===== 核心：底部渐变遮罩，消除僵硬割裂感 ===== */
+    -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%) !important;
+    mask-image: linear-gradient(to bottom, black 65%, transparent 100%) !important;
 }
 
-/* ========== 顶部导航栏：所有状态全透明 ========== */
-html body #page-header,
-html body #page-header #nav,
-html body #page-header.nav-fixed #nav,
-html body #page-header.nav-fixed,
-html body #nav {
+/* 把“Dr.who”定位到图片字母（accelerate, anon）的下方 */
+html body #site-info {
+    position: absolute !important;
+    top: 65% !important;        /* 👈 字母下方。想往上移动改小(如60%)，想往下改大(如75%) */
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    text-align: center !important;
+    width: 100% !important;
+}
+
+/* 字变大，加阴影 */
+html body #site-title {
+    font-size: 100px !important;   /* 👈 字号大小 */
+    font-weight: 800 !important;
+    letter-spacing: 8px !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(74, 144, 226, 0.8) !important;
+    margin: 0 !important;
+}
+
+/* ========== 底部蓝色底座处理 ========== */
+/* 方案 A：完全透明（默认执行这个） */
+html body #footer,
+html body #footer::before,
+html body #footer::after,
+html body #footer-wrap,
+html body .footer-other,
+html body .footer-copyright {
     background: transparent !important;
     background-color: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    background-image: none !important;
     box-shadow: none !important;
     border: none !important;
 }
-html body #nav .nav-inner,
-html body #nav .nav-left,
-html body #nav .nav-right {
-    background: transparent !important;
-}
-html body #nav .site-name,
-html body #nav #menus a,
-html body #nav .nav-icon i,
-html body #nav button i {
+
+/* 让底部的版权文字变成白色并加阴影，透明后也能看清 */
+html body #footer .footer-copyright,
+html body #footer .footer-copyright a {
     color: #ffffff !important;
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.9) !important;
 }
 
-/* ========== 底部全透明 ========== */
-html body #footer,
-html body #footer::before,
-html body #footer::after {
-    background: transparent !important;
-    background-image: none !important;
-}
-html body #footer .footer-other,
-html body #footer .footer-copyright {
-    background: transparent !important;
-    color: #ffffff !important;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8) !important;
-}
-html body #footer .footer-copyright a {
-    color: #ffffff !important;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8) !important;
-}
-
-/* ========== 首页大标题发光 ========== */
-html body #site-info #site-title {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(74, 144, 226, 0.8) !important;
-    font-weight: bold !important;
-    letter-spacing: 2px !important;
-}
+/* 方案 B：如果你觉得透明后还有字很烦，想直接删掉整个底座 */
+/* 取消下面这行前面的 // 注释符号即可生效 */
+/* html body #footer { display: none !important; } */
 
 /* ================================================= */
-/* ========== 卡片：高透明度，透出背后的火箭 ========== */
+/* ========== SpaceX 风格卡片 ========== */
 /* ================================================= */
 
-/* 首页文章卡片 + 侧边栏卡片：透明度拉到 0.28 */
-html body .recent-post-item,
-html body #recent-posts .recent-post-item,
-html body .recent-post-items .recent-post-item,
+/* 侧边栏卡片 + 首页文章卡片：深色面板 + 锐利直角 */
 html body #aside-content .card-widget,
-html body #aside-content .sticky_layout .card-widget,
-html body .aside-content .card-widget,
+html body .recent-post-item,
 html body .card-widget,
-html body .card-info,
-html body .card-announcement,
-html body .card-recent-post,
-html body .card-archives,
-html body .card-webinfo,
-html body .card-categories,
-html body .card-tags,
-html body .card-post-series,
-html body #post,
-html body #page,
-html body #archive,
-html body #tag,
-html body #category,
-html body #pagination,
-html body #post-comment,
-html body .post-meta-wrap,
-html body .article-meta-wrap {
-    background: rgba(255, 255, 255, 0.28) !important;
-    background-color: rgba(255, 255, 255, 0.28) !important;
-    backdrop-filter: blur(12px) saturate(160%) !important;
-    -webkit-backdrop-filter: blur(12px) saturate(160%) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+html body #recent-posts .recent-post-item,
+html body .recent-post-items .recent-post-item {
+    background: rgba(12, 12, 16, 0.85) !important;
+    backdrop-filter: blur(8px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(120%) !important;
+    border-radius: 4px !important;  /* 锐利边缘 */
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.03) !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
 }
 
-/* 干掉可能残留的白色伪元素层 */
-html body .recent-post-item::before,
-html body .recent-post-item::after,
-html body #aside-content .card-widget::before,
-html body #aside-content .card-widget::after {
-    display: none !important;
+/* 悬浮时：边框变 SpaceX 蓝，并微微上浮 */
+html body #aside-content .card-widget:hover,
+html body .recent-post-item:hover {
+    border-color: #005288 !important;
+    box-shadow: 0 8px 30px rgba(0, 82, 136, 0.5), inset 0 0 20px rgba(0, 212, 255, 0.1) !important;
+    transform: translateY(-4px) !important;
 }
 
-/* 深色模式下卡片适配 */
-[data-theme="dark"] html body .recent-post-item,
+/* 卡片内部文字全部改成 SpaceX 风格的冷白/灰白 */
+html body #aside-content .card-widget .item-headline,
+html body .recent-post-item .article-title,
+html body .card-widget .item-headline i,
+html body .recent-post-item .article-title i,
+html body .recent-post-item .content {
+    color: #e8e8e8 !important;
+}
+
+/* 侧边栏标题下的分割线，改为 SpaceX 蓝的细线 */
+html body #aside-content .card-widget .item-headline::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #005288;
+    margin-top: 6px;
+    box-shadow: 0 0 8px #00d4ff;
+}
+
+/* 列表项内的时间、点击量等元信息，变灰色 */
+html body .recent-post-item .article-meta-wrap,
+html body .card-widget .card-archive-list-date,
+html body .card-widget .webinfo-item .item-name,
+html body .card-widget .webinfo-item .item-count,
+html body .card-widget .length-num {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* 侧边栏“Follow Me”按钮，改成 SpaceX 蓝 */
+html body #card-info-btn {
+    background: #005288 !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+    transition: all 0.3s !important;
+}
+html body #card-info-btn:hover {
+    background: #00d4ff !important;
+    box-shadow: 0 0 15px #00d4ff !important;
+}
+
+/* 分页按钮 SpaceX 风格化 */
+html body #pagination .page-number,
+html body #pagination .extend {
+    background: rgba(12, 12, 16, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 2px !important;
+    color: #e8e8e8 !important;
+}
+html body #pagination .page-number.current {
+    background: #005288 !important;
+    border-color: #00d4ff !important;
+    box-shadow: 0 0 10px #00d4ff !important;
+}
+
+/* 深色模式下适配（如果主题切到深色，卡片更深，边框更亮） */
 [data-theme="dark"] html body #aside-content .card-widget,
-[data-theme="dark"] html body .card-widget,
-[data-theme="dark"] html body #post,
-[data-theme="dark"] html body #page {
-    background: rgba(15, 15, 15, 0.4) !important;
+[data-theme="dark"] html body .recent-post-item {
+    background: rgba(5, 5, 8, 0.9) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 
-/* ========== 链接橙色悬浮 ========== */
-html body a:hover, 
-html body #pagination .page-number.current {
-    color: #FF8C00 !important;
-    border-color: #FF8C00 !important;
+/* ================================================= */
+/* ========== 卡片：提高透明度，透出背景星舰 ========== */
+/* ================================================= */
+html body #aside-content .card-widget,
+html body .recent-post-item,
+html body .card-widget,
+html body #recent-posts .recent-post-item,
+html body .recent-post-items .recent-post-item {
+    /* 原本是 0.85，现在改成 0.25，透明度大幅提高 */
+    background: rgba(12, 12, 16, 0.25) !important; 
+    backdrop-filter: blur(8px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(140%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important; /* 边框稍微提亮，让面板轮廓更清晰 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;    /* 减弱阴影，避免在黑底上太突兀 */
 }
 
-/* ========== 滚动条美化 ========== */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); }
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #4A90E2, #FF8C00);
-    border-radius: 4px;
+/* 确保文字在透明背景下依然清晰（加文字阴影） */
+html body #aside-content .card-widget .item-headline,
+html body .recent-post-item .article-title,
+html body .card-widget .item-headline i,
+html body .recent-post-item .article-title i,
+html body .recent-post-item .content,
+html body .card-widget .card-archive-list-date,
+html body .card-widget .webinfo-item .item-name,
+html body .card-widget .webinfo-item .item-count {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.5) !important;
 }
+
+/* 深色模式适配 */
+[data-theme="dark"] html body #aside-content .card-widget,
+[data-theme="dark"] html body .recent-post-item {
+    background: rgba(5, 5, 8, 0.35) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+[32mINFO [39m Validating config
+[32mINFO [39m 
+  ===================================================================
+      #####  #    # ##### ##### ###### #####  ###### #      #   #
+      #    # #    #   #     #   #      #    # #      #       # #
+      #####  #    #   #     #   #####  #    # #####  #        #
+      #    # #    #   #     #   #      #####  #      #        #
+      #    # #    #   #     #   #      #   #  #      #        #
+      #####   ####    #     #   ###### #    # #      ######   #
+                            5.7.0
+  ===================================================================
+Usage: hexo <command>
+
+Commands:
+  [1mclean[22m     Remove generated files and cache.
+  [1mconfig[22m    Get or set configurations.
+  [1mdeploy[22m    Deploy your website.
+  [1mgenerate[22m  Generate static files.
+  [1mhelp[22m      Get help on a command.
+  [1minit[22m      Create a new Hexo folder.
+  [1mlist[22m      List the information of the site
+  [1mmigrate[22m   Migrate your site from other system to Hexo.
+  [1mnew[22m       Create a new post.
+  [1mpublish[22m   Moves a draft post from _drafts to _posts folder.
+  [1mrender[22m    Render files with renderer plugins.
+  [1mserver[22m    Start the server.
+  [1mversion[22m   Display version information.
+
+Global Options:
+  [1m--config[22m  Specify config file instead of using _config.yml
+  [1m--cwd[22m     Specify the CWD
+  [1m--debug[22m   Display all verbose messages in the terminal
+  [1m--draft[22m   Display draft posts
+  [1m--safe[22m    Disable all plugins and scripts
+  [1m--silent[22m  Hide output on console
+
+For more help, you can use 'hexo help [command]' for the detailed information
+or you can check the docs: [4mhttps://hexo.io/docs/[24m
