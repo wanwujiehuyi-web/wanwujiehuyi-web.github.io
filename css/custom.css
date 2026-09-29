@@ -1,0 +1,14 @@
+/* 首页文章卡片和侧边栏卡片半透明 */
+#recent-posts > .recent-post-item,
+#aside-content .card-widget {
+    background: rgba(255, 255, 255, 0.7) !important; 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important; 
+}
+
+/* 夜间模式适配 */
+[data-theme="dark"] #recent-posts > .recent-post-item,
+[data-theme="dark"] #aside-content .card-widget {
+    background: rgba(0, 0, 0, 0.6) !important; 
+}
